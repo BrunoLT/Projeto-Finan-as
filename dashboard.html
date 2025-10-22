@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="static/css/style-input.css">
+    <title>Dashboard - JEBY Finanças</title>
+
+    <style>
+        
+    </style>
+    </head>
+<body>
+    <header class="top-box">
+        <div class="logo">
+            <a href="dashboard.html"><span>JEBY </span>Finanças</a>
+        </div>
+        <div class="menu-container">
+            <div class="trigger-box">Menu de Navegação</div>
+            <div id="trigger-box-phone" class="trigger-box">
+                <img src="static/img/Menu Aberto.svg" alt="Menu Icone">
+            </div>
+            <div class="btns-log">
+                 <button id="login-btn" class="login-btn" >Login</button>
+                <button id="signup-btn" class="signup-btn" >Sign Up</button>
+                 <div class="user-info" >
+                    <span id="user-name">Olá!</span>
+                    <button id="logout-btn" class="logout-button">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flash-messages-container"></div>
+
+    <main>
+        <div class="dashboard">
+            <div class="dashboard-grid">
+                <section id="upload" class="upload-box">
+                    <h2>
+                        <img src="static/img/upload-icon.svg" alt="Ícone de Upload">
+                        1. Análise de Extrato
+                    </h2>
+                    <p>Escolha o tipo de análise e envie seu extrato (.csv ou .xlsx).</p>
+
+                    <div class="switch-container">
+                        <span class="switch-label active" data-value="ai">
+                            <img src="static/img/IA-icon.svg" alt="Ícone IA">
+                            Usar IA
+                        </span>
+                        <label class="switch">
+                            <input type="checkbox" id="analysis-type-switch">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="switch-label" data-value="labeled">
+                            <img src="static/img/rotuled-icon.svg" alt="Ícone Rotulado">
+                            Já Rotulado
+                        </span>
+                    </div>
+
+                    <form action="#" method="POST" enctype="multipart/form-data">
+                        <label for="file-upload" class="file-upload-label">
+                            Escolher arquivo
+                        </label>
+                        <input type="file" id="file-upload" name="file-upload" accept=".csv, .xlsx" required>
+                        <span id="file-name">Nenhum arquivo selecionado</span>
+                    </form>
+
+                    <div class="example-format-container">
+                        <h4>Ei! Seu arquivo .csv ou .xlsx deve ter este formato:</h4>
+                        
+                        <p><strong>Para análise "Usar IA":</strong></p>
+                        <table class="example-table">
+                            <thead>
+                                <tr>
+                                    <th>Descricao</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Padaria Pão Bom</td>
+                                    <td>25,50</td>
+                                </tr>
+                                <tr>
+                                    <td>Uber Viagem</td>
+                                    <td>12,75</td>
+                                </tr>
+                                <tr>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p><strong>Para análise "Já Rotulado":</strong></p>
+                        <table class="example-table">
+                            <thead>
+                                <tr>
+                                    <th>Descricao</th>
+                                    <th>Valor</th>
+                                    <th>Categoria</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Oficina Mecânica Auto Certo</td>
+                                    <td>364,41</td>
+                                    <td>Transporte</td>
+                                </tr>
+                                <tr>
+                                    <td>Supermercado Compre Bem</td>
+                                    <td>943,94</td>
+                                    <td>Educação</td>
+                                </tr>
+                                 <tr>
+                                    <td>Petshop Mundo Animal</td>
+                                    <td>467,38</td>
+                                    <td>Veículo</td>
+                                </tr>
+                                <tr>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <p style="font-size: 0.85em; font-style: italic;">* Use ponto e vírgula (;) como separador para arquivos .csv e vírgula (,) ou ponto (.) para decimais.</p>
+                        
+                        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+                        <p><strong>Ei, teste com esse aqui e veja que funciona!</strong> (Arquivo "Já Rotulado"):</p>
+                        
+                        <a href="static/examples/synthetic_transactions (1).csv" download="exemplo_transacoes_rotulado.csv" class="download-example-btn">
+                            <img src="static/img/upload-icon.svg" alt="" style="width: 14px; height: 14px; margin-right: 5px; filter: invert(1);">
+                            Baixar Arquivo de Exemplo
+                        </a>
+                    </div>
+                    </section>
+
+                <section class="upload-box">
+                    <h2>
+                        <img src="static/img/bullseye-icon.svg" alt="Ícone de Alvo">
+                        2. Suas Metas Mensais
+                    </h2>
+                    <p>Defina limites de gastos para as categorias do seu extrato e acompanhe seu progresso.</p>
+                    <form id="goals-form">
+                        <div class="form-group-grid">
+                            <div class="form-group">
+                                <label for="goal-casa" title="Casa e Vestuário"><img src="static/img/home-icon.svg">Casa e Vestuário</label>
+                                <input type="number" id="goal-casa" name="goal_casa_vestuario" placeholder="R$ 0">
+                            </div>
+                            <div class="form-group">
+                                <label for="goal-veiculo" title="Veículo"><img src="static/img/car-icon.svg">Veículo</label>
+                                <input type="number" id="goal-veiculo" name="goal_veiculo" placeholder="R$ 0">
+                            </div>
+                            <div class="form-group">
+                                <label for="goal-cuidados" title="Cuidados Pessoais"><img src="static/img/health-care-icon.svg">Cuidados Pessoais</label>
+                                <input type="number" id="goal-cuidados" name="goal_cuidados_pessoais" placeholder="R$ 0">
+                            </div>
+                            <div class="form-group">
+                                <label for="goal-supermercado" title="Supermercado"><img src="static/img/market-icon.svg">Supermercado</label>
+                                <input type="number" id="goal-supermercado" name="goal_supermercado" placeholder="R$ 0">
+                            </div>
+                            <div class="form-group">
+                                <label for="goal-alimentacao" title="Alimentação"><img src="static/img/food-icon.svg">Alimentação</label>
+                                <input type="number" id="goal-alimentacao" name="goal_alimentacao" placeholder="R$ 0">
+                            </div>
+                            <div class="form-group">
+                                <label for="goal-outros" title="Outros"><img src="static/img/others-icon.svg">Outros</label>
+                                <input type="number" id="goal-outros" name="goal_outros" placeholder="R$ 0">
+                            </div>
+                            <div class="form-group">
+                                <label for="goal-educacao" title="Educação"><img src="static/img/book-icon.svg">Educação</label>
+                                <input type="number" id="goal-educacao" name="goal_educacao" placeholder="R$ 0">
+                            </div>
+                            <div class="form-group">
+                                <label for="goal-saude" title="Saúde"><img src="static/img/capsules-icon.svg">Saúde</label>
+                                <input type="number" id="goal-saude" name="goal_saude" placeholder="R$ 0">
+                            </div>
+                            <div class="form-group">
+                                <label for="goal-lazer" title="Lazer e Eletrônicos"><img src="static/img/phone-icon.svg">Lazer e Eletrônicos</label>
+                                <input type="number" id="goal-lazer" name="goal_lazer_eletronicos" placeholder="R$ 0">
+                            </div>
+                            <div class="form-group">
+                                <label for="goal-pet" title="Pet"><img src="static/img/pet-icon.svg">Pet</label>
+                                <input type="number" id="goal-pet" name="goal_pet" placeholder="R$ 0">
+                            </div>
+                            <div class="form-group">
+                                <label for="goal-servicos" title="Serviços e Taxas"><img src="static/img/tax-icon.svg">Serviços e Taxas</label>
+                                <input type="number" id="goal-servicos" name="goal_servicos_taxas" placeholder="R$ 0">
+                            </div>
+                            <div class="form-group">
+                                <label for="goal-transporte" title="Transporte"><img src="static/img/bus-icon.svg">Transporte</label>
+                                <input type="number" id="goal-transporte" name="goal_transporte" placeholder="R$ 0">
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <div class="generate-button-wrapper">
+                <button id="generate-analysis" class="generate-button">
+                    Gerar Análise Completa
+                </button>
+            </div>
+
+            <div id="analysis-results" class="analysis-results-area"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 JEBY-Todos os direitos reservados.</p>
+        <a href="https://github.com/EnzoParraVesguerber-ml/projeto-financas-deploy.git" target="_blank" class="github-link">
+            <img src="static/img/github-icon.svg" alt="GitHub Repository">
+        </a>
+    </footer>
+
+    <script src="static/js/base.js"></script>
+    <script src="static/js/script-input.js"></script>
+</body>
+</html>
